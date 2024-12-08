@@ -1,0 +1,106 @@
+{
+    "info": {
+        "name": "Heladeria API",
+        "description": "APIs de la helader\u00eda para gestionar productos e ingredientes.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Consultar todos los productos",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/productos"
+            }
+        },
+        {
+            "name": "Consultar un producto por ID",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/productos/:producto_id",
+                "description": "Reemplazar :producto_id por el ID del producto."
+            }
+        },
+        {
+            "name": "Consultar un producto por nombre",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/productos/nombre/:nombre",
+                "description": "Reemplazar :nombre por el nombre del producto."
+            }
+        },
+        {
+            "name": "Consultar calor\u00edas de un producto por ID",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/productos/:producto_id/calorias"
+            }
+        },
+        {
+            "name": "Consultar rentabilidad de un producto por ID",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/productos/:producto_id/rentabilidad"
+            }
+        },
+        {
+            "name": "Consultar costo de producci\u00f3n de un producto por ID",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/productos/:producto_id/costo"
+            }
+        },
+        {
+            "name": "Vender un producto por ID",
+            "request": {
+                "method": "POST",
+                "url": "{{base_url}}/api/productos/:producto_id/vender"
+            }
+        },
+        {
+            "name": "Consultar todos los ingredientes",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/ingredientes"
+            }
+        },
+        {
+            "name": "Consultar un ingrediente por ID",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/ingredientes/:ingrediente_id"
+            }
+        },
+        {
+            "name": "Consultar un ingrediente por nombre",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/ingredientes/nombre/:nombre"
+            }
+        },
+        {
+            "name": "Consultar si un ingrediente es sano",
+            "request": {
+                "method": "GET",
+                "url": "{{base_url}}/api/ingredientes/:ingrediente_id/sano"
+            }
+        },
+        {
+            "name": "Reabastecer un producto por ID",
+            "request": {
+                "method": "POST",
+                "url": "{{base_url}}/api/productos/:producto_id/reabastecer",
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"cantidad\": 10\n}"
+                }
+            }
+        },
+        {
+            "name": "Renovar inventario de un producto por ID",
+            "request": {
+                "method": "POST",
+                "url": "{{base_url}}/api/productos/:producto_id/renovar"
+            }
+        }
+    ]
+}

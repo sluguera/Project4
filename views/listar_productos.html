@@ -1,0 +1,109 @@
+<h2>Menú de Productos</h2>
+<div class="productos-container">
+    {% if productos %}
+        {% for producto in productos %}
+            <div class="producto-card">
+                <h3>{{ producto.nombre }}</h3>
+                <p><strong>Tipo:</strong> {{ producto.tipo }}</p>
+                <p><strong>Precio Público:</strong> ${{ producto.precio_publico }}</p>
+                <p><strong>Ingredientes:</strong></p>
+                <ul>
+                    <li>
+                        {{ producto.ingrediente1.nombre }}
+                        {% if current_user.is_authenticated and current_user.es_admin %}
+                            - ${{ producto.ingrediente1.precio }}
+                        {% endif %}
+                    </li>
+                    <li>
+                        {{ producto.ingrediente2.nombre }}
+                        {% if current_user.is_authenticated and current_user.es_admin %}
+                            - ${{ producto.ingrediente2.precio }}
+                        {% endif %}
+                    </li>
+                    <li>
+                        {{ producto.ingrediente3.nombre }}
+                        {% if current_user.is_authenticated and current_user.es_admin %}
+                            - ${{ producto.ingrediente3.precio }}
+                        {% endif %}
+                    </li>
+                </ul>
+                {% if current_user.is_authenticated and current_user.es_admin %}
+                    <p><strong>Costo de Producción:</strong> 
+                        ${{ producto.ingrediente1.precio + producto.ingrediente2.precio + producto.ingrediente3.precio }}
+                    </p>
+                {% endif %}
+                <div class="button-container">
+                    <form action="{{ url_for('routes.vender', producto_id=producto.id) }}" method="POST">
+                        <button type="submit">Vender</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-productos">No hay productos disponibles en este momento.</p>
+    {% endif %}
+</div>
+
+<style>
+    .productos-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .producto-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .producto-card h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #ff6384;
+    }
+
+    .producto-card p {
+        margin: 0.5rem 0;
+        line-height: 1.5;
+    }
+
+    .producto-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0.5rem 0;
+    }
+
+    .producto-card ul li {
+        margin: 0.25rem 0;
+    }
+
+    .button-container {
+        margin-top: 1rem;
+    }
+
+    .button-container button {
+        background-color: #ff6384;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .button-container button:hover {
+        background-color: #ff4a6e;
+    }
+
+    .no-productos {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #888;
+    }
+</style>

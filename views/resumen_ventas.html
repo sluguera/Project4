@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumen de Ventas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4caf50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        table {
+            width: 80%;
+            margin: 2rem auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+        .button-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .button-container a {
+            text-decoration: none;
+            color: white;
+            background-color: #4caf50;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .button-container a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Resumen de Ventas</h1>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venta in ventas %}
+                <tr>
+                    <td>{{ venta.producto }}</td>
+                    <td>${{ venta.precio }}</td>
+                    <td>{{ venta.fecha }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Botón de Volver -->
+        <div class="button-container">
+            <a href="{{ url_for('routes.index') }}">Volver al Menú</a>
+        </div>
+    </main>
+</body>
+</html>

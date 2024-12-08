@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 403 - Acceso Denegado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #ff6384;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #555;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .button-container {
+            margin-top: 1rem;
+        }
+
+        .button-container a {
+            display: inline-block;
+            background-color: #ff6384;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a:hover {
+            background-color: #ff4a6e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Error 403</h1>
+    </header>
+    <main>
+        <h2>Acceso Denegado</h2>
+        <p>No tienes permisos para acceder a esta página o función.</p>
+        <div class="button-container">
+            <a href="{{ url_for('routes.index') }}">Volver al Inicio</a>
+        </div>
+    </main>
+</body>
+</html>

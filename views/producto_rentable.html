@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto Más Rentable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff9800;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        h1, h2 {
+            margin: 0;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        p {
+            font-size: 1.2rem;
+        }
+        .highlight {
+            color: #ff9800;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Producto Más Rentable</h1>
+    </header>
+    <main>
+        <h2>{{ producto.nombre }}</h2>
+        <p><strong>Tipo:</strong> {{ producto.tipo }}</p>
+        <p><strong>Precio Público:</strong> ${{ producto.precio_publico }}</p>
+        <p><strong>Ingredientes:</strong></p>
+        <ul>
+            <li>{{ producto.ingrediente1.nombre }} - ${{ producto.ingrediente1.precio }}</li>
+            <li>{{ producto.ingrediente2.nombre }} - ${{ producto.ingrediente2.precio }}</li>
+            <li>{{ producto.ingrediente3.nombre }} - ${{ producto.ingrediente3.precio }}</li>
+        </ul>
+        <p><strong>Costo de Producción:</strong> <span class="highlight">${{ costo_produccion }}</span></p>
+        <p><strong>Rentabilidad:</strong> <span class="highlight">${{ rentabilidad }}</span></p>
+        <a href="{{ url_for('routes.index') }}">Volver al Menú</a>
+    </main>
+</body>
+</html>

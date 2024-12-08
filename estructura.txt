@@ -1,0 +1,24 @@
+heladeria/
+├── controllers/
+│   ├── heladeria_controller.py
+├── database.py
+├── models/
+│   ├── base.py
+│   ├── complemento.py
+│   ├── copa.py
+│   ├── db_models.py
+│   ├── heladeria.py
+│   ├── malteada.py
+│   ├── producto.py
+├── views/
+│   ├── index.html
+│   ├── inventario.html
+│   ├── resumen_ventas.html
+│   ├── producto_rentable.html
+├── tests/
+│   ├── __init__.py
+│   ├── test_heladeria.py
+├── app.py
+├── populate_db.py
+├── requirements.txt
+├── .env

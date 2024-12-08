@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2196f3;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        th {
+            background-color: #2196f3;
+            color: white;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button-container form {
+            display: inline-block;
+        }
+        .button-container button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+        .flash-messages {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flash-messages.warning {
+            background-color: #ff9800;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gestión de Inventario</h1>
+    </header>
+    <main>
+        <!-- Mensajes Flash -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <div class="flash-messages-container">
+                    {% for category, message in messages %}
+                        <div class="flash-messages {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Botón para verificar inventario bajo -->
+        <div class="button-container">
+            <a href="{{ url_for('routes.verificar_inventario_bajo') }}">
+                <button>Verificar Inventario Bajo</button>
+            </a>
+        </div>
+
+        <h2>Ingredientes Disponibles</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Inventario</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ingrediente in ingredientes %}
+                <tr>
+                    <td>{{ ingrediente.nombre }}</td>
+                    <td>{{ ingrediente.inventario }}</td>
+                    <td>
+                        <div class="button-container">
+                            <form action="{{ url_for('routes.recargar_inventario', ingrediente_id=ingrediente.id) }}" method="POST">
+                                <input type="number" name="cantidad" min="1" placeholder="Cantidad" required>
+                                <button type="submit">Recargar</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('routes.index') }}">Volver al Menú</a>
+    </main>
+</body>
+</html>
